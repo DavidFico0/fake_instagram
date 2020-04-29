@@ -20,6 +20,10 @@ const Post = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER,
                 foreignKey: true,
                 allowNull: true
+            },
+            n_likes:{
+                type: DataTypes.INTEGER,
+                allowNull: false
             }
         },
         {
