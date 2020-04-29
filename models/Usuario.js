@@ -8,15 +8,15 @@ const Usuario = (sequelize, DataTypes) => {
                 allowNull: false
             },
             nome: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(100),
                 allowNull: false,
                 validate: {}
             },
             email: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(100),
                 allowNull: false
             },
-            senha: { type: DataTypes.STRING, allowNull: false }
+            senha: { type: DataTypes.STRING(256), allowNull: false }
         }, 
         { 
             tableName: "usuarios",

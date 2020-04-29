@@ -8,22 +8,23 @@ const Post = (sequelize, DataTypes) => {
                 allowNull: false
             },
             texto: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(100),
                 allowNull: false,
                 validate: {}
             },
             img: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(100),
                 allowNull: true
             },
             usuarios_id: {
                 type: DataTypes.INTEGER,
-                foreignKey: true,
+                // foreignKey: true,
                 allowNull: true
             },
             n_likes:{
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                default:0
             }
         },
         {
