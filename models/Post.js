@@ -1,5 +1,5 @@
 const Post = (sequelize, DataTypes) => {
-    return sequelize.define('Post',
+    let post = sequelize.define('Post',
         {
             id:{
                 type: DataTypes.INTEGER,
@@ -31,6 +31,12 @@ const Post = (sequelize, DataTypes) => {
             tableName: "posts",
             timestamps: false
         })
+
+        post.associate = (models) => {
+            post.hasMany(models.Comentario, {foreignKey: 'posts_id', as:'comentarios'})
+            post.belongsTo(models.Usuario, {foreignKey: 'usuarios_id', as: 'usuario'});
+        }
+        return post;
 }
 
 module.exports = Post;
