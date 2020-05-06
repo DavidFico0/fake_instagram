@@ -11,6 +11,15 @@ const AuthController = {
         res.render('auth/register');
     },
 
+    cadastroUsuario: async(req, res) =>{
+        let {nome, email, senha} = req.body;
+        let hashPassword = bcrypt.hashSync(senha, 10);
+
+        await Usuario.create({nome, email, senha:hashPassword});
+        res.redirect('/');
+
+    },
+
     showHome: async (req,res) => {
         console.log(req.session.usuario);
         let usuario = req.session.usuario;

@@ -19,6 +19,7 @@ const verificaUsuarioLogado = require('../middlewares/verificaUsuarioLogado');
 
 router.get('/', AuthController.showLogin);
 router.get('/registro', AuthController.showRegistro);
+router.post('/registro', AuthController.cadastroUsuario);
 router.get('/home', verificaUsuarioLogado, AuthController.showHome);
 router.post('/home', verificaUsuarioLogado, upload.any(), AuthController.postCadastro);
 router.post('/home/comentarios', verificaUsuarioLogado, AuthController.commentCadastro);

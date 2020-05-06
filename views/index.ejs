@@ -42,13 +42,18 @@
               <div class="card-body">
                                
               </div>
-              <form class="form-comments" action="/home" method="POST" enctype="multipart/form-data">
+              <form class="form-posts" action="/home" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="usuarios_id" value="<%=usuario.id %>">
                 <div class="row">
-
+                  <div class="card-public-input">
+                    <input type="file" name="files">
+                  </div>
+                  <br>
+                  <div class="card-public-input">
+                    <input type="text" placeholder="No que você está pensando..." name="texto">
+                    
+                  </div>
                 </div>
-                <input type="file" name="files">
-                <input type="text" placeholder="No que você está pensando..." name="texto">
                 <button>Publicar</button>
               </form>
 
