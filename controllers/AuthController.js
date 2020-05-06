@@ -1,5 +1,6 @@
-const { sequelize, Usuario } = require('../models');
+const { sequelize, Usuario, Post, Comentario } = require('../models');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
 const AuthController = {
     
     showLogin: (req,res) => {
@@ -10,9 +11,36 @@ const AuthController = {
         res.render('auth/register');
     },
 
-    showHome: (req,res) => {
+    showHome: async (req,res) => {
         console.log(req.session.usuario);
-        res.render('index');
+        let usuario = req.session.usuario;
+        let posts = await Post.findAll(
+            {
+                include:
+                [
+                    {
+                        model:Comentario, 
+                        as:'comentarios', 
+                        include:'usuario'
+                    }, 
+                    'usuario' 
+                ]
+            }
+        );
+        res.render('index', { posts, usuario });
+    },
+    postCadastro: async (req, res) => {
+        let {texto, usuarios_id} = req.body;
+        let { files } = req;
+        const novoPost = await Post.create({texto, img:'/img/'+ files[0].originalname, usuarios_id, n_likes:0});
+        res.redirect('/home');
+    },
+
+    commentCadastro: async (req, res) => {
+        let {texto, usuarios_id, posts_id} = req.body;
+        const novoPost = await Comentario.create({texto, usuarios_id, posts_id});
+        //console.log(req.body.usuario_id);
+        res.redirect('/home');
     },
 
     login: async (req, res) => {

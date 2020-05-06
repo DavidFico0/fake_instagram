@@ -16,8 +16,14 @@ const postsController = {
             }
         );
         //posts = JSON.parse(posts);
-        console.log(posts);
+        //console.log(posts);
         res.render('posts', {posts});
+    },
+    commentCadastro: async (req, res) => {
+        let {texto, usuarios_id, posts_id} = req.body;
+        const novoPost = await Comentario.create({texto, usuarios_id, posts_id})
+        //console.log(req.body.usuario_id);
+        res.redirect('/posts')
     }
 
 }

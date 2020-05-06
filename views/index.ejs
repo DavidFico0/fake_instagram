@@ -23,76 +23,77 @@
           <a href="">
             <div class="avatar-content">
               <img class="avatar" src="/img/avatar-example.png">
-              <b>nati.carolira</b>
+              <b><%=usuario.nome %></b>
             </div>
           </a>
         </nav>
       </div>
     </header>
     <main class="container content">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <img class="avatar" src="/img/avatar-example.png">
-            <b>nati.carolira</b>
-          </div>
-            <img src="/img/icons/more-vertical.svg">
-        </div>
-        <div class="card-img">
-          <img src="/img/publication_example.jpg">
-        </div>
-        <div class="card-body">
-          <div class="card-itens">
-            <div class="likes">
-              <img src="/img/icons/heart.svg">
-              <b>35 likes</b>
+            <br>
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <img class="avatar" src="/img/avatar-example.png">
+                  <b><%=usuario.nome %></b>
+                </div>
+                <img src="/img/icons/more-vertical.svg">
+              </div>
+              <div class="card-body">
+                               
+              </div>
+              <form class="form-comments" action="/home" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="usuarios_id" value="<%=usuario.id %>">
+                <div class="row">
+
+                </div>
+                <input type="file" name="files">
+                <input type="text" placeholder="No que você está pensando..." name="texto">
+                <button>Publicar</button>
+              </form>
+
             </div>
-            <b>Postado no dia: 16/04/2020</b>
-          </div>
-          <div class="card-comments">
-            <p><b>ovinnyoliveira</b> Mano que incrivel</p>
-            <p><b>front.hendy</b></p>
-            <p><b>verofefo</b> aff.. </p>
-          </div>
-         
-        </div>
-        <form class="form-comments" action="">
-          <input type="text" placeholder="Adicione um comentário...">
-          <button>Publicar</button>
-        </form>
-      </div>
-      
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <img class="avatar" src="/img/avatar-example.png">
-            <b>nati.carolira</b>
-          </div>
-            <img src="/img/icons/more-vertical.svg">
-        </div>
-        <div class="card-img">
-          <img src="/img/publication_example.jpg">
-        </div>
-        <div class="card-body">
-          <div class="card-itens">
-            <div class="likes">
-              <img src="/img/icons/heart.svg">
-              <b>35 likes</b>
-            </div>
-            <b>Postado no dia: 16/04/2020</b>
-          </div>
-          <div class="card-comments">
-            <p><b>ovinnyoliveira</b> Mano que incrivel</p>
-            <p><b>front.hendy</b> <3 </p>
-            <p><b>verofefo</b> aff.. </p>
-          </div>
-         
-        </div>
-        <form class="form-comments" action="">
-          <input type="text" placeholder="Adicione um comentário...">
-          <button>Publicar</button>
-        </form>
-      </div>
+            <hr>
+            <% for(let p of posts) { %>
+            <div class="card">
+                <div class="card-header">
+                  <div>
+                    <img class="avatar" src="/img/avatar-example.png">
+                    <b><%=p.usuario.nome %></b>
+                  </div>
+                  <img src="/img/icons/more-vertical.svg">
+                </div>
+                <div class="card-img">
+                  <img src="<%=p.img %>">
+                </div>
+                <div class="card-body">
+                  <div class="card-itens">
+                    <div class="likes">
+                      <img src="/img/icons/heart.svg">
+                      <b><%=p.n_likes %> likes</b>
+                    </div>
+                    <b>Postado no dia: 16/04/2020</b>
+                  </div>
+                  <div class="card-comments">
+                    <p><span style='font-size: 13pt; font-weight: bold;'><%=p.texto %></span> </p>
+                    <hr>
+                    <% for (let c of p.comentarios) { %>
+                    <p><b><%=c.usuario.nome %> </b> <%=c.texto %> </p>
+                    <% } %>
+                  </div>
+                 
+                </div>
+                <form class="form-comments" action="/home/comentarios" method="POST">
+                  <input type="hidden" name="posts_id" value="<%=p.id %>">
+                  <input type="hidden" name="usuarios_id" value="<%=usuario.id %>">
+                  <input type="text" placeholder="Adicione um comentário..." name="texto">
+                  <button>Publicar</button>
+                </form>
+              </div>
+
+              <% } %>
+        
+
     </main>
   </body>
 </html>

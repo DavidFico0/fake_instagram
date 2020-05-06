@@ -59,8 +59,10 @@
                   </div>
                  
                 </div>
-                <form class="form-comments" action="">
-                  <input type="text" placeholder="Adicione um comentário...">
+                <form class="form-comments" action="/posts" method="POST">
+                  <input type="hidden" name="posts_id" value="<%=p.id %>">
+                  <input type="hidden" name="usuarios_id" value="2">
+                  <input type="text" placeholder="Adicione um comentário..." name="texto">
                   <button>Publicar</button>
                 </form>
               </div>
