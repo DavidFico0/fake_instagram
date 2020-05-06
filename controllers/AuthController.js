@@ -21,7 +21,7 @@ const AuthController = {
     },
 
     showHome: async (req,res) => {
-        console.log(req.session.usuario);
+        //console.log(req.session.usuario);
         let usuario = req.session.usuario;
         let posts = await Post.findAll(
             {
@@ -49,6 +49,16 @@ const AuthController = {
         let {texto, usuarios_id, posts_id} = req.body;
         const novoPost = await Comentario.create({texto, usuarios_id, posts_id});
         //console.log(req.body.usuario_id);
+        res.redirect('/home');
+    },
+
+    addLike: async (req, res) => {
+        let { id } = req.body;
+        let nLikes = await Post.findAll({ where: { id }});
+        await Post.update({ n_likes: nLikes[0].n_likes + 1 }, {
+            where: {id}
+        });
+        
         res.redirect('/home');
     },
 

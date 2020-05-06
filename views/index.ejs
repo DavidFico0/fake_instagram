@@ -74,7 +74,9 @@
                 <div class="card-body">
                   <div class="card-itens">
                     <div class="likes">
-                      <img src="/img/icons/heart.svg">
+                      <button onclick="like('<%=p.id%>')">
+                        <img src="/img/icons/heart.svg">
+                      </button>
                       <b><%=p.n_likes %> likes</b>
                     </div>
                     <b>Postado no dia: 16/04/2020</b>
@@ -100,5 +102,7 @@
         
 
     </main>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/scripts/addLike.js"></script>
   </body>
 </html>

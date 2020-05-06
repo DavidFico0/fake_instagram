@@ -23,6 +23,7 @@ router.post('/registro', AuthController.cadastroUsuario);
 router.get('/home', verificaUsuarioLogado, AuthController.showHome);
 router.post('/home', verificaUsuarioLogado, upload.any(), AuthController.postCadastro);
 router.post('/home/comentarios', verificaUsuarioLogado, AuthController.commentCadastro);
+router.post('/home/like', verificaUsuarioLogado, AuthController.addLike);
 router.get('/login', AuthController.showLogin);
 router.post('/login', AuthController.login);
 
